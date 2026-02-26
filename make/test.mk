@@ -1,4 +1,6 @@
-PHONY_TARGETS += test test\:all test\:unit test\:integration
+PHONY_TARGETS += test test\:changed test\:all test\:unit test\:integration
+PHONY_TARGETS += test\:changed\:rust test\:changed\:cli test\:changed\:ffi
+PHONY_TARGETS += test\:changed\:python test\:changed\:node test\:changed\:c
 PHONY_TARGETS += test\:unit\:core test\:integration\:core test\:unit\:sdk test\:integration\:sdk
 PHONY_TARGETS += test\:unit\:rust test\:warm-cache\:rust test\:integration\:rust
 PHONY_TARGETS += test\:unit\:ffi test\:integration\:cli
@@ -6,9 +8,44 @@ PHONY_TARGETS += test\:unit\:python test\:integration\:python test\:all\:python
 PHONY_TARGETS += test\:unit\:node test\:integration\:node test\:all\:node
 PHONY_TARGETS += test\:all\:c
 
-# Default test target now runs the strict full matrix.
+# Default test target runs only changed components.
 test:
-	@$(MAKE) test:all
+	@$(MAKE) test:changed
+
+# Smart test: only test components with changes, fall back to full matrix.
+test\:changed:
+ifeq ($(CHANGED_COMPONENTS),)
+	@echo "📋 No changed components detected — skipping tests."
+	@echo "   (Use 'make test:all' to run the full test matrix)"
+else
+	@echo "📋 Changed components: $(CHANGED_COMPONENTS)"
+	@echo ""
+	@$(foreach comp,$(sort $(CHANGED_COMPONENTS)), \
+		$(MAKE) test:changed:$(comp) && \
+	) true
+	@echo ""
+	@echo "✅ All changed-component tests passed"
+endif
+
+# Per-component test dispatch targets (map component tag → existing test targets).
+test\:changed\:rust:
+	@$(MAKE) test:unit:rust
+	@$(MAKE) test:integration:rust
+
+test\:changed\:cli:
+	@$(MAKE) test:integration:cli
+
+test\:changed\:ffi:
+	@$(MAKE) test:unit:ffi
+
+test\:changed\:python:
+	@$(MAKE) test:all:python
+
+test\:changed\:node:
+	@$(MAKE) test:all:node
+
+test\:changed\:c:
+	@$(MAKE) test:all:c
 
 # Full matrix: all unit suites + all integration suites.
 test\:all:
