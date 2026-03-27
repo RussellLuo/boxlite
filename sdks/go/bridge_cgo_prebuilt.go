@@ -3,7 +3,7 @@
 package boxlite
 
 // Prebuilt CGO directives — links against libboxlite.a downloaded by:
-//   go run github.com/boxlite-ai/boxlite/sdks/go/cmd/setup
+//   go run github.com/RussellLuo/boxlite/sdks/go/cmd/setup
 
 /*
 #cgo CFLAGS: -I${SRCDIR}

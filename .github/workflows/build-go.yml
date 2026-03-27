@@ -4,8 +4,8 @@
 # and tests the Go SDK — validating the same workflow that end users follow.
 #
 # User workflow:
-#   go get github.com/boxlite-ai/boxlite/sdks/go
-#   go run github.com/boxlite-ai/boxlite/sdks/go/cmd/setup
+#   go get github.com/RussellLuo/boxlite/sdks/go
+#   go run github.com/RussellLuo/boxlite/sdks/go/cmd/setup
 #   go build ./...
 #
 # Triggers:

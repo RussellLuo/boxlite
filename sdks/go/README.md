@@ -5,8 +5,8 @@ Go SDK for BoxLite — an embeddable virtual machine runtime for secure, isolate
 ## Install
 
 ```bash
-go get github.com/boxlite-ai/boxlite/sdks/go
-go run github.com/boxlite-ai/boxlite/sdks/go/cmd/setup
+go get github.com/RussellLuo/boxlite/sdks/go
+go run github.com/RussellLuo/boxlite/sdks/go/cmd/setup
 ```
 
 Requires Go 1.24+ with CGO enabled. The setup step downloads the prebuilt native library from GitHub Releases (one-time). Set `GITHUB_TOKEN` to avoid API rate limits.
@@ -21,7 +21,7 @@ import (
 	"fmt"
 	"log"
 
-	boxlite "github.com/boxlite-ai/boxlite/sdks/go"
+	boxlite "github.com/RussellLuo/boxlite/sdks/go"
 )
 
 func main() {

@@ -1,3 +1,3 @@
-module github.com/boxlite-ai/boxlite/sdks/go
+module github.com/RussellLuo/boxlite/sdks/go
 
 go 1.24.12

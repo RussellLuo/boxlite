@@ -3,7 +3,7 @@
 //
 // Usage (after go get):
 //
-//	go run github.com/boxlite-ai/boxlite/sdks/go/cmd/setup
+//	go run github.com/RussellLuo/boxlite/sdks/go/cmd/setup
 //
 // The tool detects your platform and SDK version automatically.
 // Set GITHUB_TOKEN to avoid API rate limits.
@@ -25,8 +25,8 @@ import (
 )
 
 const (
-	repo          = "boxlite-ai/boxlite"
-	modulePath    = "github.com/boxlite-ai/boxlite/sdks/go"
+	repo          = "RussellLuo/boxlite"
+	modulePath    = "github.com/RussellLuo/boxlite/sdks/go"
 	archivePrefix = "boxlite-c-"
 )
 

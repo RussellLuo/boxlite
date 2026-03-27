@@ -141,8 +141,8 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
 ### Install
 
 ```bash
-go get github.com/boxlite-ai/boxlite/sdks/go
-go run github.com/boxlite-ai/boxlite/sdks/go/cmd/setup
+go get github.com/RussellLuo/boxlite/sdks/go
+go run github.com/RussellLuo/boxlite/sdks/go/cmd/setup
 ```
 
 Requires Go 1.24+ with CGO enabled. The setup step downloads the prebuilt native library (one-time).
@@ -157,7 +157,7 @@ import (
 	"fmt"
 	"log"
 
-	boxlite "github.com/boxlite-ai/boxlite/sdks/go"
+	boxlite "github.com/RussellLuo/boxlite/sdks/go"
 )
 
 func main() {
