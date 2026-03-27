@@ -21,14 +21,16 @@ on:
 
 jobs:
   config:
+    if: github.repository == 'boxlite-ai/boxlite'
     uses: ./.github/workflows/config.yml
 
   test:
     name: Test (${{ matrix.target }})
     needs: config
     if: >-
-      github.event_name != 'workflow_run' ||
-      github.event.workflow_run.conclusion == 'success'
+      github.repository == 'boxlite-ai/boxlite' &&
+      (github.event_name != 'workflow_run' ||
+       github.event.workflow_run.conclusion == 'success')
     runs-on: ${{ matrix.os }}
     strategy:
       fail-fast: false
