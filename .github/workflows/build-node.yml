@@ -245,7 +245,7 @@ jobs:
   publish:
     name: Publish to npm
     needs: [ config, build, test ]
-    if: github.event_name == 'release' && github.event.action == 'published'
+    if: github.event_name == 'release' && github.event.action == 'published' && github.repository == 'boxlite-ai/boxlite'
     runs-on: ubuntu-latest
     permissions:
       id-token: write   # Required for npm OIDC Trusted Publishing

@@ -207,7 +207,7 @@ jobs:
     name: Publish to crates.io
     needs: upload_to_release
     runs-on: ubuntu-latest
-    if: github.event_name == 'release'
+    if: github.event_name == 'release' && github.repository == 'boxlite-ai/boxlite'
     env:
       BOXLITE_DEPS_STUB: "1"
 

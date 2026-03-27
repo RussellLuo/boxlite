@@ -127,7 +127,7 @@ jobs:
     name: Publish to PyPI
     needs: [ build_wheels, test_wheels ]
     runs-on: ubuntu-latest
-    if: github.event_name == 'release' && github.event.action == 'published'
+    if: github.event_name == 'release' && github.event.action == 'published' && github.repository == 'boxlite-ai/boxlite'
     permissions:
       id-token: write  # IMPORTANT: this permission is mandatory for trusted publishing
 

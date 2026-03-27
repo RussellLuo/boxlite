@@ -44,11 +44,13 @@ jobs:
           go-version: ${{ needs.config.outputs.go-version }}
 
       - name: Download prebuilt library
+        env:
+          RELEASE_REPO: ${{ github.repository }}
         run: |
           VERSION=$(grep '^version = ' Cargo.toml | head -1 | sed 's/.*"\(.*\)"/\1/')
           PLATFORM="${{ matrix.target }}"
           ARCHIVE="boxlite-c-v${VERSION}-${PLATFORM}.tar.gz"
-          URL="https://github.com/boxlite-ai/boxlite/releases/download/v${VERSION}/${ARCHIVE}"
+          URL="https://github.com/${RELEASE_REPO}/releases/download/v${VERSION}/${ARCHIVE}"
           echo "Downloading: ${URL}"
           curl -sL "${URL}" | tar xz -C /tmp/
           cp "/tmp/boxlite-c-v${VERSION}-${PLATFORM}/lib/libboxlite.a" sdks/go/
@@ -62,7 +64,7 @@ jobs:
   tag-go-module:
     name: Tag Go Module
     needs: test
-    if: github.event_name == 'workflow_run' && github.event.workflow_run.event == 'release'
+    if: github.event_name == 'workflow_run' && github.event.workflow_run.event == 'release' && github.repository == 'boxlite-ai/boxlite'
     runs-on: ubuntu-latest
     permissions:
       contents: write
