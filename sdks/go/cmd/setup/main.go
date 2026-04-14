@@ -68,13 +68,21 @@ func main() {
 
 // detectPlatform maps GOOS/GOARCH to the BoxLite platform target name.
 func detectPlatform() string {
+	return detectPlatformFor(runtime.GOOS, runtime.GOARCH)
+}
+
+// detectPlatformFor maps an explicit GOOS/GOARCH pair to the BoxLite platform
+// target name.
+func detectPlatformFor(goos, goarch string) string {
 	switch {
-	case runtime.GOOS == "darwin" && runtime.GOARCH == "arm64":
+	case goos == "darwin" && goarch == "arm64":
 		return "darwin-arm64"
-	case runtime.GOOS == "linux" && runtime.GOARCH == "amd64":
+	case goos == "linux" && goarch == "amd64":
 		return "linux-x64-gnu"
+	case goos == "linux" && goarch == "arm64":
+		return "linux-arm64-gnu"
 	default:
-		fatalf("unsupported platform: %s/%s", runtime.GOOS, runtime.GOARCH)
+		fatalf("unsupported platform: %s/%s", goos, goarch)
 		return ""
 	}
 }
