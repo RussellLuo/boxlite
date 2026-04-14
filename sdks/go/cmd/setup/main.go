@@ -117,7 +117,7 @@ func detectVersion() string {
 		}
 	}
 
-	fatalf("cannot detect SDK version. Specify explicitly:\n  go run %s/cmd/setup@v0.7.6", modulePath)
+	fatalf("cannot detect SDK version. Specify explicitly:\n  go run %s/cmd/setup@v0.7.7", modulePath)
 	return ""
 }
 
